@@ -23,7 +23,7 @@ export const TRANSACTION_CATEGORY_LABELS = {
   HOUSING: "Moradia",
   OTHER: "Outros",
   PHONE_BILL: "Conta de telefone",
-  SALARY: "Salário",
+  STORE_CARDS: "Cartões de Loja",
   TRANSPORTATION: "Transporte",
   UTILITY: "Utilidades",
 };
@@ -117,14 +117,16 @@ export const TRANSACTION_CATEGORY_OPTIONS = [
     value: TransactionCategory.OTHER,
     label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.OTHER],
   },
-  {
-    value: TransactionCategory.OTHER,
-    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.OTHER],
-  },
+
   {
     value: TransactionCategory.PHONE_BILL,
     label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.PHONE_BILL],
   },
+  {
+    value: TransactionCategory.STORE_CARDS,
+    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.STORE_CARDS],
+  },
+
   {
     value: TransactionCategory.TRANSPORTATION,
     label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.TRANSPORTATION],
