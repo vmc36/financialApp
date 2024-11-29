@@ -22,7 +22,7 @@ export const TRANSACTION_CATEGORY_LABELS = {
   HEALTH: "Saúde",
   HOUSING: "Moradia",
   OTHER: "Outros",
-  PHONE_BILL: "Conta de telefone",
+  PHONE_BILL: "Conta telefônica",
   STORE_CARDS: "Cartões de Loja",
   TRANSPORTATION: "Transporte",
   UTILITY: "Utilidades",
