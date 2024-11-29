@@ -22,6 +22,7 @@ export const TRANSACTION_CATEGORY_LABELS = {
   HEALTH: "Saúde",
   HOUSING: "Moradia",
   OTHER: "Outros",
+  PHONE_BILL: "Conta de telefone",
   SALARY: "Salário",
   TRANSPORTATION: "Transporte",
   UTILITY: "Utilidades",
@@ -117,8 +118,12 @@ export const TRANSACTION_CATEGORY_OPTIONS = [
     label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.OTHER],
   },
   {
-    value: TransactionCategory.SALARY,
-    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.SALARY],
+    value: TransactionCategory.OTHER,
+    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.OTHER],
+  },
+  {
+    value: TransactionCategory.PHONE_BILL,
+    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.PHONE_BILL],
   },
   {
     value: TransactionCategory.TRANSPORTATION,
