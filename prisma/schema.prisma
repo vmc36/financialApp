@@ -36,6 +36,7 @@ enum TransactionCategory {
   PHONE_BILL
   HOUSING
   OTHER
+  SALARY
   STORE_CARDS
   TRANSPORTATION
   UTILITY

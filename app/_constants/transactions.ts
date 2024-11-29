@@ -129,8 +129,8 @@ export const TRANSACTION_CATEGORY_OPTIONS = [
   },
 
   {
-    value: TransactionCategory.STORE_CARDS,
-    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.STORE_CARDS],
+    value: TransactionCategory.SALARY,
+    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.SALARY],
   },
 
   {
