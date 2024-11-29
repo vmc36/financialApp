@@ -15,9 +15,10 @@ export const TRANSACTION_PAYMENT_METHOD_ICONS = {
 };
 
 export const TRANSACTION_CATEGORY_LABELS = {
-  EDUCATION: "Educação",
+  CREDIT_CARD: "Cartão de Crédito",
+  INTERNET: "Internet",
   ENTERTAINMENT: "Entretenimento",
-  FOOD: "Alimentação",
+  FOOD_CARD: "Alimentação",
   HEALTH: "Saúde",
   HOUSING: "Moradia",
   OTHER: "Outros",
@@ -88,16 +89,20 @@ export const TRANSACTION_PAYMENT_METHOD_OPTIONS = [
 
 export const TRANSACTION_CATEGORY_OPTIONS = [
   {
-    value: TransactionCategory.EDUCATION,
-    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.EDUCATION],
+    value: TransactionCategory.CREDIT_CARD,
+    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.CREDIT_CARD],
+  },
+  {
+    value: TransactionCategory.INTERNET,
+    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.INTERNET],
   },
   {
     value: TransactionCategory.ENTERTAINMENT,
     label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.ENTERTAINMENT],
   },
   {
-    value: TransactionCategory.FOOD,
-    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.FOOD],
+    value: TransactionCategory.FOOD_CARD,
+    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.FOOD_CARD],
   },
   {
     value: TransactionCategory.HEALTH,

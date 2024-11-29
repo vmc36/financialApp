@@ -28,15 +28,18 @@ enum TransactionType {
 }
 
 enum TransactionCategory {
-  HOUSING
-  TRANSPORTATION
-  FOOD
+  CREDIT_CARD
+  INTERNET
   ENTERTAINMENT
+  FOOD_CARD
   HEALTH
-  UTILITY
-  SALARY
-  EDUCATION
+  HOUSING
+  PHONE_BILL
+  STORE_CARDS
   OTHER
+  SALARY
+  TRANSPORTATION
+  UTILITY
 }
 
 enum TransactionPaymentMethod {
