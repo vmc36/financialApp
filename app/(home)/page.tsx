@@ -33,10 +33,10 @@ const Home = async ({ searchParams: { month } }: HomeProps) => {
   return (
     <>
       <Navbar />
-      <div className="flex h-full flex-col space-y-6 overflow-hidden p-6">
-        <div className="flex justify-between">
-          <h1 className="text-2xl font-bold">Dashboard</h1>
-          <div className="flex items-center gap-3">
+      <div className="xs:justify-between xs:overflow-visible xs:p-[1rem] flex h-full flex-col space-y-6 overflow-hidden p-6">
+        <div className="xs:flex-col flex justify-between">
+          <h1 className="xs:text-center mb-3 text-2xl font-bold">Dashboard</h1>
+          <div className="xs:justify-evenly flex items-center gap-3">
             <AiReportButton
               month={month}
               hasPremiumPlan={
@@ -46,14 +46,14 @@ const Home = async ({ searchParams: { month } }: HomeProps) => {
             <TimeSelect />
           </div>
         </div>
-        <div className="grid h-full grid-cols-[2fr,1fr] gap-6 overflow-hidden">
-          <div className="flex flex-col gap-6 overflow-hidden">
+        <div className="xs:flex xs:flex-col xs:overflow-visible grid h-full grid-cols-[2fr,1fr] gap-6 overflow-hidden">
+          <div className="xs:overflow-visible flex flex-col gap-6 overflow-hidden">
             <SummaryCards
               month={month}
               {...dashboard}
               userCanAddTransaction={userCanAddTransaction}
             />
-            <div className="grid h-full grid-cols-3 grid-rows-1 gap-6 overflow-hidden">
+            <div className="xs:overflow-visible xs:flex xs:flex-col grid h-full grid-cols-3 grid-rows-1 gap-6 overflow-hidden">
               <TransactionsPieChart {...dashboard} />
               <ExpensesPerCategory
                 expensesPerCategory={dashboard.totalExpensePerCategory}

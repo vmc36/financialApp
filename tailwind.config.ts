@@ -8,6 +8,9 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      xs: { max: "414px" },
+    },
     extend: {
       colors: {
         danger: "#F6352E",
