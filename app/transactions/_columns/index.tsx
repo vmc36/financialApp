@@ -9,6 +9,40 @@ import {
 } from "@/app/_constants/transactions";
 import EditTransactionButton from "../_components/edit-transaction-button";
 import DeleteTransactionButton from "../_components/delete-transaction-button";
+import { useState } from "react";
+
+// Componente separado para o checkbox
+const PaidCheckbox = ({ transaction }: { transaction: Transaction }) => {
+  const [isPaid, setIsPaid] = useState(() => {
+    // Recupera o valor inicial do localStorage
+    const storedValue = localStorage.getItem(
+      `transaction-paid-${transaction.id}`,
+    );
+    return storedValue ? JSON.parse(storedValue) : transaction.paid;
+  });
+
+  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.checked;
+    setIsPaid(newValue);
+    // Salva no localStorage
+    localStorage.setItem(
+      `transaction-paid-${transaction.id}`,
+      JSON.stringify(newValue),
+    );
+  };
+
+  return (
+    <div className="space-x-1">
+      <input
+        type="checkbox"
+        name={`isPaid-${transaction.id}`}
+        id={`isPaid-${transaction.id}`}
+        checked={isPaid}
+        onChange={handleCheckboxChange}
+      />
+    </div>
+  );
+};
 
 export const transactionColumns: ColumnDef<Transaction>[] = [
   {
@@ -43,6 +77,13 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
         month: "long",
         year: "numeric",
       }),
+  },
+  {
+    accessorKey: "paid",
+    header: "Pago",
+    cell: ({ row: { original: transaction } }) => (
+      <PaidCheckbox transaction={transaction} />
+    ),
   },
   {
     accessorKey: "amount",
