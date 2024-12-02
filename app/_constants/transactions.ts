@@ -18,7 +18,9 @@ export const TRANSACTION_CATEGORY_LABELS = {
   CREDIT_CARD: "Cartão de Crédito",
   INTERNET: "Internet",
   ENTERTAINMENT: "Entretenimento",
+  ENERGY_BILL: "Energia",
   FOOD_CARD: "Alimentação",
+  FIES: "FIES",
   HEALTH: "Saúde",
   HOUSING: "Moradia",
   OTHER: "Outros",
@@ -103,6 +105,10 @@ export const TRANSACTION_CATEGORY_OPTIONS = [
     label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.ENTERTAINMENT],
   },
   {
+    value: TransactionCategory.ENERGY_BILL,
+    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.ENERGY_BILL],
+  },
+  {
     value: TransactionCategory.FOOD_CARD,
     label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.FOOD_CARD],
   },
@@ -122,6 +128,10 @@ export const TRANSACTION_CATEGORY_OPTIONS = [
   {
     value: TransactionCategory.PHONE_BILL,
     label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.PHONE_BILL],
+  },
+  {
+    value: TransactionCategory.FIES,
+    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.FIES],
   },
   {
     value: TransactionCategory.STORE_CARDS,
