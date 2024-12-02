@@ -18,7 +18,7 @@ const PaidCheckbox = ({ transaction }: { transaction: Transaction }) => {
     const storedValue = localStorage.getItem(
       `transaction-paid-${transaction.id}`,
     );
-    return storedValue ? JSON.parse(storedValue) : transaction.paid;
+    return storedValue ? JSON.parse(storedValue) : "";
   });
 
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
