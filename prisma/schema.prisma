@@ -41,7 +41,7 @@ enum TransactionCategory {
   SALARY
   STORE_CARDS
   TRANSPORTATION
-  UTILITY
+  UBER
 }
 
 enum TransactionPaymentMethod {

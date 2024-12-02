@@ -28,7 +28,7 @@ export const TRANSACTION_CATEGORY_LABELS = {
   SALARY: "Salário",
   STORE_CARDS: "Cartões de Loja",
   TRANSPORTATION: "Transporte",
-  UTILITY: "Utilidades",
+  UBER: "UBER",
 };
 
 export const TRANSACTION_PAYMENT_METHOD_LABELS = {
@@ -148,7 +148,7 @@ export const TRANSACTION_CATEGORY_OPTIONS = [
     label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.TRANSPORTATION],
   },
   {
-    value: TransactionCategory.UTILITY,
-    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.UTILITY],
+    value: TransactionCategory.UBER,
+    label: TRANSACTION_CATEGORY_LABELS[TransactionCategory.UBER],
   },
 ];
