@@ -18,7 +18,7 @@ const TransactionsPage = async () => {
       userId,
     },
     orderBy: {
-      date: "desc",
+      date: "asc",
     },
   });
   const userCanAddTransaction = await canUserAddTransaction();

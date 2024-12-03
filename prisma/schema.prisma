@@ -19,6 +19,7 @@ model Transaction {
   createdAt     DateTime                 @default(now())
   updatedAt     DateTime                 @updatedAt
   userId        String
+  isPaid        Boolean @default(false)
 }
 
 enum TransactionType {
