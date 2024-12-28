@@ -8,9 +8,9 @@ import { usePathname } from "next/navigation";
 const Navbar = () => {
   const pathname = usePathname();
   return (
-    <nav className="xs:justify-center flex justify-between border-b border-solid px-8 py-4">
+    <nav className="flex justify-between border-b border-solid px-8 py-4 xs:justify-center">
       {/* ESQUERDA */}
-      <div className="xs:flex-col xs:gap-4 xs:items-center flex items-center gap-10">
+      <div className="flex items-center gap-10 xs:flex-col xs:items-center xs:gap-4">
         <Image src="/logo.svg" width={173} height={39} alt="Finance AI" />
         <Link
           href="/"
@@ -32,16 +32,16 @@ const Navbar = () => {
         >
           Transações
         </Link>
-        <Link
+        {/* <Link
           href="/subscription"
           className={
-            pathname === "/subscription"
+            "hidden" + pathname === "/subscription"
               ? "font-bold text-primary"
               : "text-muted-foreground"
           }
         >
           Assinatura
-        </Link>
+        </Link> */}
       </div>
       {/* DIREITA */}
       <div className="xs:hidden">

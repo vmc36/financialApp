@@ -13,32 +13,42 @@ import AiReportButton from "./_components/ai-report-button";
 
 interface HomeProps {
   searchParams: {
-    month: string;
+    year?: string;
+    month?: string;
   };
 }
 
-const Home = async ({ searchParams: { month } }: HomeProps) => {
+const Home = async ({ searchParams: { year, month } }: HomeProps) => {
+  const currentDate = new Date();
   const monthIsInvalid = !month || !isMatch(month, "MM");
+  const yearIsInvalid = !year || !isMatch(year, "yyyy");
+
+  if (monthIsInvalid || yearIsInvalid) {
+    redirect(
+      `?year=${currentDate.getFullYear()}&month=${String(
+        currentDate.getMonth() + 1,
+      ).padStart(2, "0")}`,
+    );
+  }
+
   const { userId } = await auth();
   if (!userId) {
     redirect("/login");
   }
 
-  if (monthIsInvalid) {
-    redirect(`?month=${new Date().getMonth() + 1}`);
-  }
-  const dashboard = await getDashboard(month);
+  const dashboard = await getDashboard(year!, month!);
   const userCanAddTransaction = await canUserAddTransaction();
   const user = await clerkClient().users.getUser(userId);
+
   return (
     <>
       <Navbar />
-      <div className="xs:justify-between xs:overflow-visible xs:p-[1rem] flex h-full flex-col space-y-6 overflow-hidden p-6">
-        <div className="xs:flex-col flex justify-between">
-          <h1 className="xs:text-center mb-3 text-2xl font-bold">Dashboard</h1>
-          <div className="xs:justify-evenly flex items-center gap-3">
+      <div className="flex h-full flex-col space-y-6 overflow-hidden p-6 xs:justify-between xs:overflow-visible xs:p-[1rem]">
+        <div className="flex justify-between xs:flex-col">
+          <h1 className="mb-3 text-2xl font-bold xs:text-center">Dashboard</h1>
+          <div className="flex items-center gap-3 xs:justify-evenly">
             <AiReportButton
-              month={month}
+              month={month!}
               hasPremiumPlan={
                 user.publicMetadata.subscriptionPlan !== "premium"
               }
@@ -46,14 +56,15 @@ const Home = async ({ searchParams: { month } }: HomeProps) => {
             <TimeSelect />
           </div>
         </div>
-        <div className="xs:flex xs:flex-col xs:overflow-visible grid h-full grid-cols-[2fr,1fr] gap-6 overflow-hidden">
-          <div className="xs:overflow-visible flex flex-col gap-6 overflow-hidden">
+        <div className="grid h-full grid-cols-[2fr,1fr] gap-6 overflow-hidden xs:flex xs:flex-col xs:overflow-visible">
+          <div className="flex flex-col gap-6 overflow-hidden xs:overflow-visible">
             <SummaryCards
-              month={month}
+              year={year!}
+              month={month!}
               {...dashboard}
               userCanAddTransaction={userCanAddTransaction}
             />
-            <div className="xs:overflow-visible xs:flex xs:flex-col grid h-full grid-cols-3 grid-rows-1 gap-6 overflow-hidden">
+            <div className="grid h-full grid-cols-3 grid-rows-1 gap-6 overflow-hidden xs:flex xs:flex-col xs:overflow-visible">
               <TransactionsPieChart {...dashboard} />
               <ExpensesPerCategory
                 expensesPerCategory={dashboard.totalExpensePerCategory}

@@ -7,6 +7,7 @@ import {
 import SummaryCard from "./summary-card";
 
 interface SummaryCards {
+  year: string;
   month: string;
   balance: number;
   depositsTotal: number;
@@ -35,7 +36,7 @@ const SummaryCards = async ({
       />
 
       {/* OUTROS CARDS */}
-      <div className="xs:flex xs:flex-col xs:justify-center grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 gap-6 xs:flex xs:flex-col xs:justify-center">
         <SummaryCard
           icon={<PiggyBankIcon size={16} />}
           title="Investido"

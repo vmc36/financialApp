@@ -3,18 +3,25 @@ import { TransactionType } from "@prisma/client";
 import { TotalExpensePerCategory, TransactionPercentagePerType } from "./types";
 import { auth } from "@clerk/nextjs/server";
 
-export const getDashboard = async (month: string) => {
+export const getDashboard = async (year: string, month: string) => {
   const { userId } = await auth();
   if (!userId) {
     throw new Error("Unauthorized");
   }
+
+  const startDate = new Date(`${year}-${month}-01`);
+  const endDate = new Date(startDate);
+  endDate.setMonth(startDate.getMonth() + 1);
+  endDate.setDate(0);
+
   const where = {
     userId,
     date: {
-      gte: new Date(`2024-${month}-01`),
-      lt: new Date(`2024-${month}-31`),
+      gte: new Date(`${year}-${month}-01T00:00:00.000Z`),
+      lte: new Date(`${year}-${month}-31T23:59:59.999Z`),
     },
   };
+
   const depositsTotal = Number(
     (
       await db.transaction.aggregate({
