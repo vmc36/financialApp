@@ -8,6 +8,7 @@ import {
   SelectValue,
 } from "@/app/_components/ui/select";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useState, useEffect } from "react";
 
 const YEAR_OPTIONS = [
   { value: "2024", label: "2024" },
@@ -35,10 +36,21 @@ const MONTH_OPTIONS = [
 const TimeSelect = () => {
   const { push } = useRouter();
   const searchParams = useSearchParams();
-  const year = searchParams.get("year") || "2025"; // Valor padrão
-  const month = searchParams.get("month") || "01"; // Valor padrão
+
+  const initialYear = searchParams.get("year") || "2025";
+  const initialMonth = searchParams.get("month") || "01";
+
+  const [year, setYear] = useState(initialYear);
+  const [month, setMonth] = useState(initialMonth);
+
+  useEffect(() => {
+    setYear(searchParams.get("year") || "2025");
+    setMonth(searchParams.get("month") || "01");
+  }, [searchParams]);
 
   const handleTimeChange = (newYear: string, newMonth: string) => {
+    setYear(newYear);
+    setMonth(newMonth);
     push(`/?year=${newYear}&month=${newMonth}`);
   };
 
@@ -47,7 +59,7 @@ const TimeSelect = () => {
       {/* Filtro de Mês */}
       <Select
         onValueChange={(newMonth) => handleTimeChange(year, newMonth)}
-        defaultValue={month}
+        value={month}
       >
         <SelectTrigger className="w-[150px] rounded-full">
           <SelectValue placeholder="Mês" />
@@ -63,7 +75,7 @@ const TimeSelect = () => {
       {/* Filtro de Ano */}
       <Select
         onValueChange={(newYear) => handleTimeChange(newYear, month)}
-        defaultValue={year}
+        value={year}
       >
         <SelectTrigger className="w-[150px] rounded-full">
           <SelectValue placeholder="Ano" />
