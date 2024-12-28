@@ -32,16 +32,6 @@ const Navbar = () => {
         >
           Transações
         </Link>
-        {/* <Link
-          href="/subscription"
-          className={
-            "hidden" + pathname === "/subscription"
-              ? "font-bold text-primary"
-              : "text-muted-foreground"
-          }
-        >
-          Assinatura
-        </Link> */}
       </div>
       {/* DIREITA */}
       <div className="xs:hidden">

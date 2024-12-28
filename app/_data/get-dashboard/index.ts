@@ -96,7 +96,7 @@ export const getDashboard = async (year: string, month: string) => {
   }));
   const lastTransactions = await db.transaction.findMany({
     where,
-    orderBy: { date: "desc" },
+    orderBy: { date: "asc" },
     take: 15,
   });
   return {

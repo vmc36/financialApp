@@ -6,6 +6,7 @@ import { formatCurrency } from "@/app/_utils/currency";
 import { Transaction, TransactionType } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
+import ExportTransactionsButton from "../_components/export-transactions-button";
 
 interface LastTransactionsProps {
   lastTransactions: Transaction[];
@@ -34,6 +35,15 @@ const LastTransactions = ({ lastTransactions }: LastTransactionsProps) => {
         <Button variant="outline" className="rounded-full font-bold" asChild>
           <Link href="/transactions">Ver mais</Link>
         </Button>
+
+        <ExportTransactionsButton
+          transactions={lastTransactions.map((transaction) => ({
+            name: transaction.name,
+            date: new Date(transaction.date).toISOString(),
+            type: transaction.type.toString(),
+            amount: Number(transaction.amount),
+          }))}
+        />
       </CardHeader>
       <CardContent className="space-y-6">
         {lastTransactions.map((transaction) => (
