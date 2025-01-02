@@ -11,26 +11,32 @@ import EditTransactionButton from "../_components/edit-transaction-button";
 import DeleteTransactionButton from "../_components/delete-transaction-button";
 import { useState } from "react";
 
-// Componente separado para o checkbox
 const PaidCheckbox = ({ transaction }: { transaction: Transaction }) => {
-  const [isPaid, setIsPaid] = useState(() => {
-    // Recupera o valor inicial do localStorage
-    const storedValue = localStorage.getItem(
-      `transaction-paid-${transaction.id}`,
-    );
-    return storedValue ? JSON.parse(storedValue) : "";
-  });
+  const [isPaid, setIsPaid] = useState(transaction.isPaid);
 
-  const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCheckboxChange = async (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const newValue = e.target.checked;
     setIsPaid(newValue);
-    // Salva no localStorage
-    localStorage.setItem(
-      `transaction-paid-${transaction.id}`,
-      JSON.stringify(newValue),
-    );
-  };
 
+    try {
+      const response = await fetch("/api/transactions/update-is-paid", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: transaction.id, isPaid: newValue }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erro ao atualizar o status de pagamento");
+      }
+    } catch (error) {
+      console.error(error);
+      setIsPaid(transaction.isPaid); // Reverte o estado em caso de erro
+    }
+  };
   return (
     <div className="space-x-1">
       <input
@@ -43,7 +49,6 @@ const PaidCheckbox = ({ transaction }: { transaction: Transaction }) => {
     </div>
   );
 };
-
 export const transactionColumns: ColumnDef<Transaction>[] = [
   {
     accessorKey: "name",
@@ -89,11 +94,13 @@ export const transactionColumns: ColumnDef<Transaction>[] = [
   {
     accessorKey: "amount",
     header: "Valor",
-    cell: ({ row: { original: transaction } }) =>
-      new Intl.NumberFormat("pt-BR", {
+    cell: ({ row: { original: transaction } }) => {
+      const amountAsNumber = Number(transaction.amount);
+      return new Intl.NumberFormat("pt-BR", {
         style: "currency",
         currency: "BRL",
-      }).format(Number(transaction.amount)),
+      }).format(amountAsNumber);
+    },
   },
   {
     accessorKey: "actions",
